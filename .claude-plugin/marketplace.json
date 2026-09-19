@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "obi9",
+  "description": "Agent skills for working with Obi9 biotech data, over the REST API or either MCP connector.",
+  "owner": {
+    "name": "Obi9 Technologies",
+    "url": "https://biotech.obi9.ai"
+  },
+  "plugins": [
+    {
+      "name": "obi9-api",
+      "description": "Obi9's REST and WebSocket API: share counts, valuation, filings, transcripts, trials, adverse events and the feed.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/obi9-api"],
+      "homepage": "https://biotech.obi9.ai/developers",
+      "keywords": ["biotech", "api", "rest", "valuation", "clinical-trials"]
+    },
+    {
+      "name": "obi9-terminal",
+      "description": "The full Obi9 toolset over MCP: companies, catalysts, trials, adverse events, labels, valuation and market data.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/obi9-terminal"],
+      "homepage": "https://biotech.obi9.ai/mcp-full-docs",
+      "keywords": ["biotech", "mcp", "connector", "valuation", "clinical-trials"]
+    },
+    {
+      "name": "obi9-reports",
+      "description": "The Obi9 reports connector over MCP: the trial and adverse-event data behind your reports, and control of the reports themselves.",
+      "source": "./",
+      "strict": false,
+      "skills": ["./skills/obi9-reports"],
+      "homepage": "https://biotech.obi9.ai/mcp-docs",
+      "keywords": ["biotech", "mcp", "connector", "clinical-trials", "faers"]
+    }
+  ]
+}
