@@ -23,24 +23,31 @@ attach. Use the one that matches where you are running.
 **Claude Code**
 
 If this skill arrived as the `obi9-terminal` plugin, **the connector is already
-registered** under the name `obi9`: the plugin ships it, and Claude Code starts
-it on enable. Do not add it again. Confirm and authenticate:
+registered** and there is nothing to add: the plugin ships it and Claude Code
+starts it on enable.
 
-```bash
-claude mcp list              # obi9 should be listed
-claude mcp login obi9        # opens the browser to sign in
+It registers under the SCOPED name, not a bare one:
+
+```
+plugin:obi9-terminal:obi9
 ```
 
-Only if `obi9` is NOT listed (someone pasted this file rather than installing
-the plugin) add it by hand, then sign in:
+That full string is what every command wants. `claude mcp login obi9` fails,
+because no server is called `obi9`.
+
+```bash
+claude mcp list                                  # shows it, and health-checks
+claude mcp login plugin:obi9-terminal:obi9       # signs in
+```
+
+Only if nothing Obi9 appears in `claude mcp list` (someone pasted this file
+rather than installing the plugin) add it by hand, and then the name is yours
+to choose:
 
 ```bash
 claude mcp add --transport http obi9 https://biotech.obi9.ai/mcp --scope user
 claude mcp login obi9
 ```
-
-`/mcp` inside a session does the same thing interactively, and is also where a
-server can be toggled off without uninstalling.
 
 **Claude desktop or claude.ai**
 
@@ -56,19 +63,50 @@ can track.
 
 ## 2. Authenticate
 
+**Installing does not sign anybody in, and nothing will prompt on its own at
+install time.** Registering a server and authorising it are separate steps, and
+the OAuth flow only runs when something asks for it: the notice Claude Code
+prints at session start when a server needs sign-in, the `/mcp` panel, or an
+explicit `claude mcp login`. So after installing, RUN THE LOGIN. Do not report
+success on the strength of a successful install.
+
 Nothing to create beforehand. Do NOT go looking for a client ID, a client
 secret or an API key: the client registers itself with Obi9 automatically and
 authentication happens in the browser.
 
 What the user will see, in order:
 
-1. The client opens a browser to the Obi9 sign-in page. If it cannot open one
-   it prints the URL instead; tell the user to open it.
+1. The browser opens on the Obi9 sign-in page.
 2. They sign in. Either their normal Obi9 password, or **Email me a sign-in
    code**, which sends a **6-digit** code to their address. The code option
    exists for seats that have no terminal password.
 3. They approve the connection for their own account.
 4. The browser hands the client its token and the connection is live.
+
+### No browser on this machine
+
+Over SSH, or on Linux with no display server, `claude mcp login` detects it and
+prints the authorization URL instead of trying to open anything. The user opens
+that URL on their own machine, signs in, and pastes the **full redirect URL**
+from their browser's address bar back at the prompt. `--no-browser` forces that
+mode even where a browser exists.
+
+```bash
+claude mcp login plugin:obi9-terminal:obi9 --no-browser
+```
+
+The paste step needs an interactive terminal, so an SSH session has to be
+attached: connect with `ssh -t`.
+
+This is why Obi9 has no device-code flow with a short code to type. The client
+carries the round trip instead.
+
+### Non-interactive runs
+
+In `claude -p` or an SDK run there is no panel and no way to run OAuth. Claude
+Code will report the server's tools as unavailable until it is authorised. Sign
+in once from an interactive session; the credential persists.
+`claude mcp logout <name>` clears it.
 
 **There is no code to copy back into the terminal.** If you are used to GitHub's
 device flow, where the CLI shows an eight-character code to type into a web
