@@ -32,12 +32,11 @@ It registers under the SCOPED name, not a bare one:
 plugin:obi9-terminal:obi9
 ```
 
-That full string is what every command wants. `claude mcp login obi9` fails,
-because no server is called `obi9`.
+That full string is what every command wants. A bare `obi9` fails, because no
+server is called that.
 
 ```bash
-claude mcp list                                  # shows it, and health-checks
-claude mcp login plugin:obi9-terminal:obi9       # signs in
+claude mcp list        # shows it, and health-checks the connection
 ```
 
 Only if nothing Obi9 appears in `claude mcp list` (someone pasted this file
@@ -63,12 +62,28 @@ can track.
 
 ## 2. Authenticate
 
-**Installing does not sign anybody in, and nothing will prompt on its own at
-install time.** Registering a server and authorising it are separate steps, and
-the OAuth flow only runs when something asks for it: the notice Claude Code
-prints at session start when a server needs sign-in, the `/mcp` panel, or an
-explicit `claude mcp login`. So after installing, RUN THE LOGIN. Do not report
-success on the strength of a successful install.
+**Installing does not sign anybody in, and nothing prompts on its own at
+install time.** Registering a server and authorising it are separate steps. Do
+not report success on the strength of a successful install.
+
+**If you are the agent: you cannot do this step.** Signing in is interactive
+and happens in a browser, so it belongs to the human. Your job is to hand off
+clearly. Say this:
+
+> Type `/mcp` at the prompt, choose the Obi9 server, and pick Authenticate. A
+> browser will open. I cannot run `/mcp` for you, it is a slash command for
+> your session, not a shell command.
+
+`/mcp` is the instruction to give, because it works on every version of Claude
+Code. There is also a shell equivalent, but only from **v2.1.186** onwards, and
+on anything older it fails with `unknown command 'login'`:
+
+```bash
+claude --version                                 # 2.1.186 or newer?
+claude mcp login plugin:obi9-terminal:obi9       # only if it is
+```
+
+If that errors, do not go hunting for another command. Fall back to `/mcp`.
 
 Nothing to create beforehand. Do NOT go looking for a client ID, a client
 secret or an API key: the client registers itself with Obi9 automatically and
@@ -85,11 +100,12 @@ What the user will see, in order:
 
 ### No browser on this machine
 
-Over SSH, or on Linux with no display server, `claude mcp login` detects it and
-prints the authorization URL instead of trying to open anything. The user opens
-that URL on their own machine, signs in, and pastes the **full redirect URL**
-from their browser's address bar back at the prompt. `--no-browser` forces that
-mode even where a browser exists.
+Needs `claude mcp login`, so v2.1.186 or newer. Over SSH, or on Linux with no
+display server, it detects the absence of a browser and prints the authorization
+URL instead of trying to open one. The user opens that URL on their own machine,
+signs in, and pastes the **full redirect URL** from their browser's address bar
+back at the prompt. `--no-browser` forces that mode even where a browser
+exists.
 
 ```bash
 claude mcp login plugin:obi9-terminal:obi9 --no-browser
