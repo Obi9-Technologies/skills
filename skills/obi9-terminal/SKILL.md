@@ -9,7 +9,26 @@ The Obi9 tools the user already has in the terminal, available inside whichever
 AI assistant they work in. Your first job is usually to get the connector
 attached. Do that before answering the question they actually asked.
 
-## 1. Install
+## 1. Check before you install anything
+
+**Run `claude mcp list` first.** An Obi9 connector may already be there, and
+adding a second one is worse than doing nothing: the same tools then appear
+twice under different namespaces and cost twice the context.
+
+It can already be present for reasons that have nothing to do with this skill:
+
+- **Inherited from claude.ai.** A connector added in the claude.ai web UI shows
+  up in Claude Code too, listed under `claude.ai` with `Config location:
+  claude.ai`. If it says connected, you are DONE. Do not add, do not
+  re-authenticate, and never offer Clear authentication, which signs the user
+  out of a working connection.
+- **Shipped by this plugin**, as `plugin:obi9-terminal:obi9`.
+- **Added by hand** earlier, under whatever name they chose.
+
+If any of them is connected, skip to the verification checks in section 5. Only
+continue here when there is no Obi9 server at all.
+
+## 2. Install
 
 The address is:
 
@@ -60,7 +79,7 @@ keep an `mcp.json`, that is an entry carrying the `url`. Follow the client's own
 documentation for the exact key names, which change more often than this file
 can track.
 
-## 2. Authenticate
+## 3. Authenticate
 
 **Installing does not sign anybody in, and nothing prompts on its own at
 install time.** Registering a server and authorising it are separate steps. Do
@@ -134,7 +153,7 @@ the browser, not into your terminal.
 The token is per user. Everyone who connects acts as themselves, with their own
 watchlists and alerts, so never share one.
 
-## 3. When it does not work
+## 4. When it does not work
 
 - **Tools listed but every call returns unauthorized.** The connector is
   registered but not signed in. Re-run the sign-in (`/mcp` in Claude Code).
@@ -149,7 +168,7 @@ watchlists and alerts, so never share one.
 - Ask the user to confirm they have an Obi9 account at all. This connector
   authenticates an existing account; it cannot create one.
 
-## 4. Prove it works before saying it works
+## 5. Prove it works before saying it works
 
 A connector that lists its tools is not a connector that works. Run these two
 checks and show the user the answers. Both must go through the connector: if
@@ -173,7 +192,7 @@ answer from a plausible sentence, and naming the tool is what lets them.
 If either check fails, work through the troubleshooting above rather than
 reporting success.
 
-## 5. What the toolset reaches
+## 6. What the toolset reaches
 
 Orientation, so you know when Obi9 is the right place to look rather than the
 open web. You do not need to name tools or memorise options.
@@ -198,7 +217,7 @@ open web. You do not need to name tools or memorise options.
 If the user wants a key-authenticated REST surface for scripts and spreadsheets
 instead, that is a different product: see the `obi9-api` skill.
 
-## 6. Get the real guidance from the connector
+## 7. Get the real guidance from the connector
 
 The connector serves task-level skills of its own, and they are the useful
 layer: which tool answers a given question, how to read what comes back, and
@@ -208,7 +227,7 @@ sequence of calls.
 Ask the connector to list its skills, or call its `read_skill` tool. They are
 served live, so they stay current in a way this installed file cannot.
 
-## 7. Before you answer
+## 8. Before you answer
 
 **Account tools write to a real account.** Watchlist, shortlist and alert tools
 change what a person receives by email and what they see in the terminal, and
