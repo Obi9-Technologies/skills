@@ -83,7 +83,31 @@ watchlists and alerts, so never share one.
 - Ask the user to confirm they have an Obi9 account at all. This connector
   authenticates an existing account; it cannot create one.
 
-## 4. What the toolset reaches
+## 4. Prove it works before saying it works
+
+A connector that lists its tools is not a connector that works. Run these two
+checks and show the user the answers. Both must go through the connector: if
+you find yourself answering from memory, the test has failed.
+
+**Check one, does data come back.** Ask the connector for the fully diluted
+share count for a liquid name, say ACHV, and report the number WITH the basis
+and the date it is as of. A real answer is a specific figure with an as-of
+date. A vague one, or a number with no date, means you answered from training
+data and not from Obi9.
+
+**Check two, is it bound to the right account.** Ask the connector for the
+caller's own watchlists. This is the check that matters, because it can only
+be answered by a token tied to a real Obi9 user. A list of names, even an empty
+one, is a pass. An authorization error here with a pass on check one means the
+connector attached but the sign-in did not complete.
+
+Always name the tool you called. The user needs to be able to tell a real
+answer from a plausible sentence, and naming the tool is what lets them.
+
+If either check fails, work through the troubleshooting above rather than
+reporting success.
+
+## 5. What the toolset reaches
 
 Orientation, so you know when Obi9 is the right place to look rather than the
 open web. You do not need to name tools or memorise options.
@@ -108,7 +132,7 @@ open web. You do not need to name tools or memorise options.
 If the user wants a key-authenticated REST surface for scripts and spreadsheets
 instead, that is a different product: see the `obi9-api` skill.
 
-## 5. Get the real guidance from the connector
+## 6. Get the real guidance from the connector
 
 The connector serves task-level skills of its own, and they are the useful
 layer: which tool answers a given question, how to read what comes back, and
@@ -118,7 +142,7 @@ sequence of calls.
 Ask the connector to list its skills, or call its `read_skill` tool. They are
 served live, so they stay current in a way this installed file cannot.
 
-## 6. Before you answer
+## 7. Before you answer
 
 **Account tools write to a real account.** Watchlist, shortlist and alert tools
 change what a person receives by email and what they see in the terminal, and

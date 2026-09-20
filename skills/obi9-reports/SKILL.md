@@ -90,7 +90,32 @@ one.
 - **The email code never arrives.** It goes to the address Obi9 sends the
   reports to. If they are reading reports, that is the address to use.
 
-## 4. What the toolset reaches
+## 4. Prove it works before saying it works
+
+A connector that lists its tools is not a connector that works. Run these two
+checks and show the user the answers. Both must go through the connector: if
+you find yourself answering from memory, the test has failed.
+
+**Check one, does data come back.** Ask the connector for recent FDA
+adverse-event activity on a well-known drug, say KEYTRUDA, over the last week.
+A real answer names counts or specific case reports. A general description of
+what the drug is means you answered from training data and not from Obi9.
+
+**Check two, is it bound to the right account.** Ask the connector what reports
+the caller receives and which watchlist leads them. This is the check that
+matters, because it can only be answered by a token tied to a real Obi9 user.
+Any concrete answer, even an empty shortlist, is a pass. An authorization error
+here with a pass on check one means the connector attached but the sign-in did
+not complete.
+
+Always name the tool you called. The user needs to be able to tell a real
+answer from a plausible sentence, and naming the tool is what lets them.
+
+If either check fails, work through the troubleshooting above rather than
+reporting success. Do not change anything on the account as part of testing:
+these tools send real email.
+
+## 5. What the toolset reaches
 
 Three groups, and you do not need to name tools or memorise options.
 
@@ -102,7 +127,7 @@ Three groups, and you do not need to name tools or memorise options.
 - **Your reports.** Everything that shapes the emails: which reports arrive,
   which watchlist leads them, what is on the shortlist.
 
-## 5. Get the real guidance from the connector
+## 6. Get the real guidance from the connector
 
 The connector serves task-level skills of its own, and they are the useful
 layer: which tool answers a given question, how to read what comes back, and
@@ -112,7 +137,7 @@ a sequence of calls.
 Ask the connector to list its skills, or call its `read_skill` tool. They are
 served live, so they stay current in a way this installed file cannot.
 
-## 6. Before you answer
+## 7. Before you answer
 
 **Report tools write to a real account.** Changing reports, the leading
 watchlist or the shortlist changes what a person receives by email, and the
