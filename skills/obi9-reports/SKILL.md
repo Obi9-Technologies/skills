@@ -23,13 +23,25 @@ attach. Use the one that matches where you are running.
 
 **Claude Code**
 
+If this skill arrived as the `obi9-reports` plugin, **the connector is already
+registered** under the name `obi9-reports`: the plugin ships it, and Claude Code
+starts it on enable. Do not add it again. Confirm and authenticate:
+
 ```bash
-claude mcp add --transport http obi9 https://biotech.obi9.ai/mcp-reports
+claude mcp list                   # obi9-reports should be listed
+claude mcp login obi9-reports     # opens the browser to sign in
 ```
 
-Then run `/mcp` in Claude Code and pick Obi9 to start the sign-in. Add
-`--scope user` to the add command if the user wants it available in every
-project rather than just this one.
+Only if `obi9-reports` is NOT listed (someone pasted this file rather than
+installing the plugin) add it by hand, then sign in:
+
+```bash
+claude mcp add --transport http obi9-reports https://biotech.obi9.ai/mcp-reports --scope user
+claude mcp login obi9-reports
+```
+
+`/mcp` inside a session does the same thing interactively, and is also where a
+server can be toggled off without uninstalling.
 
 **Claude desktop or claude.ai**
 

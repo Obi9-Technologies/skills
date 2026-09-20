@@ -22,6 +22,12 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/obi9-terminal"],
+      "mcpServers": {
+        "obi9": {
+          "type": "http",
+          "url": "https://biotech.obi9.ai/mcp"
+        }
+      },
       "homepage": "https://biotech.obi9.ai/mcp-full-docs",
       "keywords": ["biotech", "mcp", "connector", "valuation", "clinical-trials"]
     },
@@ -31,6 +37,12 @@
       "source": "./",
       "strict": false,
       "skills": ["./skills/obi9-reports"],
+      "mcpServers": {
+        "obi9-reports": {
+          "type": "http",
+          "url": "https://biotech.obi9.ai/mcp-reports"
+        }
+      },
       "homepage": "https://biotech.obi9.ai/mcp-docs",
       "keywords": ["biotech", "mcp", "connector", "clinical-trials", "faers"]
     }
