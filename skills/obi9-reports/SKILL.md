@@ -72,13 +72,42 @@ claude mcp login obi9-reports
 
 Settings, then Connectors, then Add custom connector, and paste the address.
 
+**Cursor**
+
+Cursor has no add command; the server goes in a JSON file. User level is
+`~/.cursor/mcp.json`, project level is `.cursor/mcp.json`, and the two are
+merged with the project one winning on a name clash. A `url` and no `command`
+is what marks it as remote:
+
+```json
+{
+  "mcpServers": {
+    "obi9-reports": {
+      "url": "https://biotech.obi9.ai/mcp-reports"
+    }
+  }
+}
+```
+
+Save, restart Cursor, then open Customize and authenticate the server, or run
+`cursor-agent mcp login obi9-reports`. `cursor-agent mcp list` shows status.
+Cursor registers itself with Obi9 automatically, so there is no client ID to
+set.
+
 **Other clients**
 
 Anything that supports a remote MCP server over Streamable HTTP will work.
-Point it at the address above as an HTTP (not stdio) server; in editors that
-keep an `mcp.json`, that is an entry carrying the `url`. Follow the client's own
-documentation for the exact key names, which change more often than this file
-can track.
+Point it at the address above as an HTTP (not stdio) server. Follow the
+client's own documentation for the exact key names, which change more often
+than this file can track.
+
+**A remote editor session, such as Cursor over SSH**
+
+Authenticate from a client running on the machine that has the browser. In a
+remote editor session the MCP client can be running on the remote host while
+the browser callback lands on the laptop, and the token then never reaches the
+side that needs it. This is a client limitation rather than anything about
+Obi9, and it is not worth fighting: connect from the local machine instead.
 
 This is the narrower of the two Obi9 connectors. A reader with a full Obi9
 terminal account wants the `obi9-terminal` skill instead, which also reaches
