@@ -67,10 +67,6 @@ claude mcp add --transport http obi9 https://biotech.obi9.ai/mcp --scope user
 claude mcp login obi9
 ```
 
-**Claude desktop or claude.ai**
-
-Settings, then Connectors, then Add custom connector, and paste the address.
-
 **Cursor**
 
 Cursor has no add command; the server goes in a JSON file. User level is
@@ -92,12 +88,56 @@ Save, restart Cursor, then open Customize and authenticate the server, or run
 `cursor-agent mcp login obi9`. `cursor-agent mcp list` shows status. Cursor
 registers itself with Obi9 automatically, so there is no client ID to set.
 
+**Claude (claude.ai or the desktop app)**
+
+1. Settings, then Connectors, then Add custom connector.
+2. Name it `Obi9 Technologies` and paste the address. Leave the OAuth fields
+   blank, then Add.
+3. Claude opens an Obi9 sign-in and Allow page. Approve it.
+
+**ChatGPT**
+
+1. Turn on Developer mode once: Settings, then Plugins, then Developer mode,
+   toggle on.
+2. Back in Plugins, choose Browse plugins, then the `+` at the top right,
+   next to Search Plugins.
+3. Name it `Obi9 Technologies`, paste the address, and set Authentication to
+   OAuth. Leave any new fields empty.
+4. Sign in and Allow on the Obi9 page that opens.
+
+Driving the OpenAI Responses API directly instead? That takes an `mcp` tool
+with an MCP-enabled Obi9 API key, which an Obi9 admin issues; a key minted in
+the developer portal will not work on this surface.
+
+```json
+{
+  "type": "mcp",
+  "server_label": "obi9",
+  "server_url": "https://biotech.obi9.ai/mcp",
+  "authorization": "<OBI9_API_KEY>",
+  "require_approval": "never"
+}
+```
+
+**Grok**
+
+1. Click the `+` in the message box, then Add connector. Or go to
+   grok.com/connectors and choose New Connector.
+2. Choose Custom.
+3. Name it `Obi9 Technologies`, paste the address, then Add connector.
+4. Grok opens an Obi9 sign-in and Allow page. Approve it, and the tools are
+   available in your chats.
+
 **Other clients**
 
 Anything that supports a remote MCP server over Streamable HTTP will work.
 Point it at the address above as an HTTP (not stdio) server. Follow the
 client's own documentation for the exact key names, which change more often
 than this file can track.
+
+These steps mirror the walkthrough in the Obi9 terminal under Settings,
+Connections, How to, which also shows the address for the account you are
+signed into. Send anyone who wants to click through it there.
 
 **A remote editor session, such as Cursor over SSH**
 
