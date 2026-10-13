@@ -137,6 +137,7 @@ Orientation only. Load the reference for parameters and response shapes.
 | `GET /fields/watchlists` | Watchlists you can see; your own are editable |
 | `GET /fields/versions` | Methodology version history |
 | `GET /fields/docs` | The full reference as plain text |
+| `POST /fields/feedback` | Report a failing call or a wrong answer to the Obi9 team: `text`, optionally `endpoint` and `status` |
 | `GET /fields/skills` | Task-level guidance, see below |
 | `wss://api.obi9.ai/api/ws?api_key=obi_YOUR_KEY` | Real-time alert notifications |
 
