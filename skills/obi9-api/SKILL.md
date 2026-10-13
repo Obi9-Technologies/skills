@@ -33,8 +33,9 @@ Two more discovery calls worth knowing:
 
 The human-readable version is at https://biotech.obi9.ai/developers, organised
 as chapters: Quickstart, Fields and Data, Watchlists, Search, Feed, Trials,
-Conferences, FAERS, Objects and WebSocket. Each chapter's anchor works as a
-deep link, so you can send the user straight to the part that answers them.
+Conferences, FAERS, Objects, WebSocket and Support for agents. Each chapter's
+anchor works as a deep link (Support for agents is #support), so you can send
+the user straight to the part that answers them.
 
 ## 2. Authenticate
 
