@@ -2,8 +2,8 @@
 
 Agent skills that teach an AI assistant how to reach [Obi9](https://biotech.obi9.ai)
 biotech data: fully diluted share counts and enterprise value, SEC filings and
-earnings transcripts, clinical trials, FDA adverse events, drug labels,
-catalysts, and a feed of what just happened.
+earnings transcripts, clinical trials, medical conference abstracts, FDA adverse
+events, drug labels, catalysts, and a feed of what just happened.
 
 Install one and your assistant knows how to connect, what it can ask for, and
 where to find the current reference. Each skill is a bootstrap: the depth is

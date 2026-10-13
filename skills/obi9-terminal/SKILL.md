@@ -272,8 +272,10 @@ open web. You do not need to name tools or memorise options.
   milestones, with the history of how each expected date has moved.
 - **Clinical trials.** US and EU registry records, what changed on a trial over
   time, the documents an EU trial has posted, and posted results.
-- **Adverse events.** FDA FAERS activity and the individual case reports behind
-  it.
+- **Adverse events.** FDA FAERS activity, the cases reporting a given reaction,
+  and the individual case reports behind them.
+- **Medical conferences.** The meeting calendar with every key date, abstract
+  releases, and the abstracts themselves, searchable by words or by meaning.
 - **Drug labels.** The current FDA label, with links to the authoritative
   documents.
 - **Share counts and valuation.** Fully diluted counts, the dilution breakdown

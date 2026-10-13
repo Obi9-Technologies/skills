@@ -9,7 +9,7 @@
   "plugins": [
     {
       "name": "obi9-api",
-      "description": "Obi9's REST and WebSocket API: share counts, valuation, filings, transcripts, trials, adverse events and the feed.",
+      "description": "Obi9's REST and WebSocket API: share counts, valuation, filings, transcripts, trials, conference abstracts, adverse events and the feed.",
       "source": "./",
       "strict": false,
       "skills": ["./skills/obi9-api"],
@@ -18,7 +18,7 @@
     },
     {
       "name": "obi9-terminal",
-      "description": "The full Obi9 toolset over MCP: companies, catalysts, trials, adverse events, labels, valuation and market data.",
+      "description": "The full Obi9 toolset over MCP: companies, catalysts, trials, conference abstracts, adverse events, labels, valuation and market data.",
       "source": "./",
       "strict": false,
       "skills": ["./skills/obi9-terminal"],

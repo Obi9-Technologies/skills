@@ -1,6 +1,6 @@
 ---
 name: obi9-api
-description: "Drives the Obi9 REST and WebSocket API for biotech companies: share counts and enterprise value, SEC filings and transcripts, clinical trials, FDA adverse events, search and a feed. WHEN: the user wants Obi9 data in a script, notebook, spreadsheet or backend job, mentions an Obi9 API key or an obi_ token, names a URL under api.obi9.ai, or is getting 401 or 403 from Obi9. Covers loading the full reference in one call, the parameter conventions, and managing API keys and the IP allowlist."
+description: "Drives the Obi9 REST and WebSocket API for biotech companies: share counts and enterprise value, SEC filings and transcripts, clinical trials, medical conference abstracts, FDA adverse events, search and a feed. WHEN: the user wants Obi9 data in a script, notebook, spreadsheet or backend job, mentions an Obi9 API key or an obi_ token, names a URL under api.obi9.ai, or is getting 401 or 403 from Obi9. Covers loading the full reference in one call, the parameter conventions, and managing API keys and the IP allowlist."
 ---
 
 # Obi9 API
@@ -33,8 +33,8 @@ Two more discovery calls worth knowing:
 
 The human-readable version is at https://biotech.obi9.ai/developers, organised
 as chapters: Quickstart, Fields and Data, Watchlists, Search, Feed, Trials,
-Objects and WebSocket. Each chapter's anchor works as a deep link, so you can
-send the user straight to the part that answers them.
+Conferences, FAERS, Objects and WebSocket. Each chapter's anchor works as a
+deep link, so you can send the user straight to the part that answers them.
 
 ## 2. Authenticate
 
@@ -132,6 +132,8 @@ Orientation only. Load the reference for parameters and response shapes.
 | `GET /fields/feed` | What happened across the companies you follow, newest first, with the AI's analysis attached |
 | `GET /fields/trials/search`, `GET /fields/trials/{id}` | Trial records as registered, plus posted results |
 | `GET /fields/catalysts` | The forecast catalyst calendar |
+| `GET /fields/conferences`, `GET /fields/conferences/abstracts` | Medical meetings with every key date, and their abstracts, searchable by words or by meaning |
+| `GET /fields/faers`, `/fields/faers/reactions`, `/fields/faers/cases` | FDA adverse-event reports: counts and cases, the cases reporting a reaction, one case in full |
 | `GET /fields/watchlists` | Watchlists you can see; your own are editable |
 | `GET /fields/versions` | Methodology version history |
 | `GET /fields/docs` | The full reference as plain text |
