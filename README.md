@@ -24,7 +24,15 @@ sure, `obi9-terminal` is the right guess for a terminal account and
 
 ## Install
 
-Use one method, not both.
+**`obi9-api` is one file.** Save
+[`skills/obi9-api/SKILL.md`](skills/obi9-api/SKILL.md) as `obi9-api/SKILL.md`
+in your agent's skills folder (`~/.cursor/skills` in Cursor, `~/.claude/skills`
+in Claude Code) and set your key as the `OBI9_API_KEY` environment variable.
+There is nothing else to install.
+
+For the two connector skills, use one of these (one method, not both). The
+Claude Code plugin also adds the connector itself; elsewhere the skill walks
+your agent through adding it.
 
 **Claude Code**
 
@@ -53,7 +61,10 @@ The MCP connectors sign you in from inside your assistant: add the address, and
 Obi9 emails you a sign-in code. There is no key to paste.
 
 The REST API uses an API key, which you create in the
-[developer portal](https://biotech.obi9.ai/developers).
+[developer portal](https://biotech.obi9.ai/developers). Keep it in the
+`OBI9_API_KEY` environment variable rather than pasting it into a chat, and
+register the IP address you will call from in the same portal: keys work only
+from registered addresses.
 
 Not every capability is enabled on every plan. If your credential cannot reach
 something, the response says so.
